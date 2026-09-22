@@ -42,11 +42,11 @@ export default function Navbar() {
       }`}
     >
       <nav
-        className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 md:h-20 md:px-10"
+        className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-6 md:h-20 md:px-10"
         aria-label="Navegação principal"
       >
-        <a href="#inicio" className="flex items-center" aria-label="Yetuware — página inicial">
-          <img src={logo} alt="Logo Yetuware" className="h-10 w-auto md:h-12" />
+        <a href="#inicio" className="flex shrink-0 items-center" aria-label="Yetuware — página inicial">
+          <img src={logo} alt="Logo Yetuware" className="h-12 w-auto md:h-14" />
         </a>
 
         <ul className="hidden items-center gap-9 lg:flex">
@@ -105,8 +105,8 @@ export default function Navbar() {
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               className="fixed inset-0 z-[100] flex flex-col bg-ink lg:hidden"
             >
-            <div className="flex shrink-0 items-center justify-between px-5 pt-[max(1.25rem,env(safe-area-inset-top))]">
-              <img src={logo} alt="Logo Yetuware" className="h-12 w-auto" />
+            <div className="flex shrink-0 items-center justify-between px-6 pt-[max(1.25rem,env(safe-area-inset-top))] md:px-10">
+              <img src={logo} alt="Logo Yetuware" className="h-14 w-auto" />
               <button
                 type="button"
                 onClick={() => setOpen(false)}
@@ -118,7 +118,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <ul className="flex flex-1 flex-col justify-center gap-1 overflow-y-auto px-5 pb-6 pt-6 md:px-10">
+            <ul className="flex flex-1 flex-col justify-center gap-1 overflow-y-auto px-6 pb-6 pt-6 md:px-10">
               {LINKS.map((link, i) => (
                 <motion.li
                   key={link.href}
@@ -150,7 +150,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="shrink-0 px-5 pb-8 pt-4 md:px-10"
+              className="shrink-0 px-6 pb-8 pt-4 md:px-10"
               style={{ paddingBottom: "calc(2rem + env(safe-area-inset-bottom))" }}
             >
               <a

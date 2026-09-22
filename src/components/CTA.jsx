@@ -49,7 +49,7 @@ export default function CTA() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-10 h-96 w-96 rounded-full bg-violet/15 blur-[130px]"
+        className="pointer-events-none absolute -left-32 top-10 hidden h-96 w-96 rounded-full bg-violet/15 blur-[130px] md:block"
       >
         <motion.div
           className="h-full w-full rounded-full"
@@ -59,7 +59,7 @@ export default function CTA() {
       </div>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-32 -right-20 h-80 w-80 rounded-full bg-lime/10 blur-[120px]"
+        className="pointer-events-none absolute -bottom-32 -right-20 hidden h-80 w-80 rounded-full bg-lime/10 blur-[120px] md:block"
       >
         <motion.div
           className="h-full w-full rounded-full"
@@ -72,7 +72,7 @@ export default function CTA() {
         <motion.span
           key={i}
           aria-hidden="true"
-          className="pointer-events-none absolute rounded-full bg-paper/25"
+          className="pointer-events-none absolute hidden rounded-full bg-paper/25 md:block"
           style={{ left: dot.left, top: dot.top, width: dot.size, height: dot.size }}
           animate={
             reduced ? undefined : { y: [0, -40, 0], opacity: [0.2, 0.8, 0.2] }

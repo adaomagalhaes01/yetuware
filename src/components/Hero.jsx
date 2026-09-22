@@ -9,19 +9,20 @@ import {
 } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import hero from "../assets/hero.jpg";
-import { Reveal, WordReveal } from "./shared";
+import { Reveal, WordReveal, useMobile } from "./shared";
 
 export default function Hero() {
   const ref = useRef(null);
   const reduced = useReducedMotion();
+  const mobile = useMobile();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, reduced ? 0 : 150]);
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1.18, reduced ? 1.1 : 1.02]);
-  const imgOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.5]);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, mobile || reduced ? 0 : 150]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1.18, mobile || reduced ? 1.1 : 1.02]);
+  const imgOpacity = useTransform(scrollYProgress, [0, 0.85], [1, mobile ? 1 : 0.5]);
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -73,7 +74,7 @@ export default function Hero() {
         className="pointer-events-none absolute -right-40 top-1/4 h-96 w-96 rounded-full bg-violet/25 blur-[140px]"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-20 pt-24 md:px-10 md:pb-24 md:pt-36">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-20 pt-24 md:px-10 md:pb-24 md:pt-36">
         <div className="max-w-3xl">
           <h1 className="font-display text-[clamp(2rem,5.4vw,4.6rem)] font-black uppercase leading-[0.94] tracking-[-0.02em]">
             <WordReveal text="TECNOLOGIA QUE" delay={0.05} />

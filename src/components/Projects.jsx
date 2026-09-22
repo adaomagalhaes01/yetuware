@@ -1,28 +1,24 @@
 import { ArrowUpRight } from "lucide-react";
-import heroImg from "../assets/hero.jpg";
 import { Chip, Reveal, WordReveal } from "./shared";
 
 const PROJECTS = [
   {
     n: "01",
-    eyebrow: "Mobilidade Estudantil",
+    eyebrow: "Mobilidade Urbana",
     title: "TransFacil",
-    desc: "Aplicação de mobilidade estudantil.",
-    visual: "image",
+    desc: "Aplicação de mobilidade urbana.",
   },
   {
     n: "02",
-    eyebrow: "Ajuda Solidária",
+    eyebrow: "Responsabilidade Social",
     title: "Angola Unida",
     desc: "Plataforma de ajuda solidária.",
-    visual: "violet",
   },
   {
     n: "03",
     eyebrow: "Mobilidade Urbana",
     title: "PilotoApp",
     desc: "Mobilidade urbana para mototáxi.",
-    visual: "lime",
   },
 ];
 
@@ -51,6 +47,24 @@ function Label({ project }) {
         </h3>
         <p className="mt-2 text-sm text-paper/65">{project.desc}</p>
       </div>
+    </div>
+  );
+}
+
+function Visual({ n }) {
+  return (
+    <div className="absolute inset-0 bg-ink">
+      <div className="pattern-grid-lime absolute inset-0" />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-10 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-lime/10 blur-[90px] transition-all duration-700 group-hover:bg-lime/20"
+      />
+      <span
+        aria-hidden="true"
+        className="text-outline-lime absolute -right-6 -bottom-8 select-none font-display text-[9rem] font-black leading-none"
+      >
+        {n}
+      </span>
     </div>
   );
 }
@@ -94,53 +108,7 @@ export default function Projects() {
                 aria-label={`${project.title} — ${project.desc}`}
                 className="group relative block h-[360px] overflow-hidden rounded-xl lg:h-[400px]"
               >
-                {project.visual === "image" && (
-                  <>
-                    <img
-                      src={heroImg}
-                      alt={`TransFacil — aplicação de mobilidade estudantil`}
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                    />
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 to-ink/10 transition-opacity duration-500 group-hover:from-ink/95"
-                    />
-                  </>
-                )}
-
-                {project.visual === "violet" && (
-                  <>
-                    <div className="pattern-grid absolute inset-0 bg-gradient-to-br from-violet/90 via-[#4a0f9e] to-ink" />
-                    <div
-                      aria-hidden="true"
-                      className="pointer-events-none absolute -top-20 right-0 h-64 w-64 rounded-full bg-violet/25 blur-[90px] transition-all duration-700 group-hover:bg-violet/40"
-                    />
-                    <span
-                      aria-hidden="true"
-                      className="text-outline-white absolute -right-6 bottom-4 select-none font-display text-[8rem] font-black leading-none"
-                    >
-                      {project.n}
-                    </span>
-                  </>
-                )}
-
-                {project.visual === "lime" && (
-                  <div className="pattern-grid-lime absolute inset-0 bg-ink">
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute -left-10 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-lime/10 blur-[90px] transition-all duration-700 group-hover:bg-lime/20"
-                    />
-                    <span
-                      aria-hidden="true"
-                      className="text-outline-lime absolute -right-6 -bottom-8 select-none font-display text-[9rem] font-black leading-none"
-                    >
-                      {project.n}
-                    </span>
-                  </div>
-                )}
-
+                <Visual n={project.n} />
                 <Arrow />
                 <Label project={project} />
               </a>

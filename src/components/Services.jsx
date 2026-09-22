@@ -1,40 +1,86 @@
 import { ArrowUpRight, Code2, Compass, Globe, Smartphone } from "lucide-react";
-import { Chip, Reveal, WordReveal } from "./shared";
+import websitesImg from "../assets/service-websites.jpg";
+import appsImg from "../assets/service-apps.jpg";
+import softwareImg from "../assets/service-software.jpg";
+import consultingImg from "../assets/service-consulting.jpg";
+import { Chip, Img, Reveal, WordReveal } from "./shared";
 
-const base = "group relative flex flex-col overflow-hidden rounded-xl p-7 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:scale-[1.03]";
+const SERVICES = [
+  {
+    n: "01",
+    Icon: Globe,
+    title: "Websites",
+    desc: "Experiências digitais rápidas, modernas e desenhadas para representar marcas.",
+    img: websitesImg,
+    alt: "Website moderno num computador portátil",
+    accent:
+      "border border-ink/[0.06] bg-white hover:border-ink/10 hover:shadow-xl hover:shadow-ink/10",
+  },
+  {
+    n: "02",
+    Icon: Smartphone,
+    title: "Aplicações",
+    desc: "Aplicações web e mobile desenvolvidas para resolver problemas reais.",
+    img: appsImg,
+    alt: "Aplicação mobile em uso num smartphone",
+    accent: "bg-lime hover:bg-lime-soft",
+  },
+  {
+    n: "03",
+    Icon: Code2,
+    title: "Software",
+    desc: "Sistemas personalizados para automatizar e transformar processos.",
+    img: softwareImg,
+    alt: "Código de software num ecrã",
+    accent: "pattern-grid bg-ink text-paper hover:bg-moss",
+  },
+  {
+    n: "04",
+    Icon: Compass,
+    title: "Consultoria",
+    desc: "Estratégia e tecnologia para transformar ideias em produtos digitais.",
+    img: consultingImg,
+    alt: "Equipa a colaborar numa sessão de consultoria",
+    accent: "border border-ink/[0.06] bg-bone hover:border-ink/10 hover:bg-paper",
+  },
+];
 
-function CardHeader({ n, Icon }) {
+function CardMedia({ img, alt }) {
   return (
-    <div className="flex items-start justify-between">
-      <span className="font-display text-sm font-bold tracking-[0.3em] opacity-50">{n}</span>
-      <span className="grid h-12 w-12 place-items-center rounded-full border border-current/15 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110">
-        <Icon className="h-5 w-5" strokeWidth={1.75} />
-      </span>
+    <div className="relative h-28 shrink-0 overflow-hidden md:h-32">
+      <Img
+        src={img}
+        alt={alt}
+        className="absolute inset-0"
+        imgClassName="h-full w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+        skeletonClassName="bg-ink/10"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent"
+      />
     </div>
   );
 }
 
-function CardBody({ title, desc }) {
+function CardBody({ n, Icon, title, desc }) {
   return (
-    <div className="relative mt-6 flex flex-1 flex-col justify-end">
-      <h3 className="font-display text-xl font-extrabold uppercase tracking-tight">{title}</h3>
-      <p className="mt-2 max-w-xs text-sm leading-relaxed opacity-65">{desc}</p>
-      <div className="mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em]">
+    <div className="flex flex-1 flex-col p-4 md:p-5">
+      <div className="flex items-start justify-between">
+        <span className="font-display text-[11px] font-bold tracking-[0.3em] opacity-50 md:text-xs">{n}</span>
+        <span className="grid h-8 w-8 place-items-center rounded-full border border-current/15 transition-transform duration-500 group-hover:scale-110">
+          <Icon className="h-4 w-4" strokeWidth={1.75} />
+        </span>
+      </div>
+      <h3 className="mt-2.5 font-display text-[15px] font-extrabold uppercase tracking-tight md:text-base">
+        {title}
+      </h3>
+      <p className="mt-1 max-w-xs text-[13px] leading-relaxed opacity-65">{desc}</p>
+      <div className="mt-3 flex items-center gap-2 pt-0.5 text-[11px] font-semibold uppercase tracking-[0.2em] opacity-70">
         Explorar
-        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+        <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
       </div>
     </div>
-  );
-}
-
-function GhostNumber({ n }) {
-  return (
-<span
-    aria-hidden="true"
-    className="pointer-events-none absolute -bottom-8 -right-2 select-none font-display text-[6rem] font-black leading-none opacity-0 transition-opacity duration-700 group-hover:opacity-[0.07]"
-  >
-      {n}
-    </span>
   );
 }
 
@@ -78,58 +124,22 @@ export default function Services() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid gap-6 md:mt-20 lg:grid-cols-2 lg:gap-8">
-          <Reveal className="h-full">
-            <article className={`${base} min-h-[320px] border border-ink/[0.06] bg-white hover:border-ink/10 hover:shadow-2xl hover:shadow-ink/10`}>
-              <GhostNumber n="01" />
-              <CardHeader n="01" Icon={Globe} />
-              <CardBody
-                title="Websites"
-                desc="Experiências digitais rápidas, modernas e desenhadas para representar marcas."
-              />
-            </article>
-          </Reveal>
-
-          <Reveal delay={0.1} className="h-full">
-            <article className={`${base} min-h-[320px] bg-lime hover:bg-lime-soft hover:shadow-[0_40px_80px_-40px_rgba(202,237,91,0.6)]`}>
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full border border-ink/15"
-              />
-              <GhostNumber n="02" />
-              <CardHeader n="02" Icon={Smartphone} />
-              <CardBody
-                title="Aplicações"
-                desc="Aplicações web e mobile desenvolvidas para resolver problemas reais."
-              />
-            </article>
-          </Reveal>
-
-          <Reveal delay={0.15} className="h-full">
-            <article className={`${base} pattern-grid min-h-[320px] bg-ink text-paper hover:bg-moss hover:shadow-[0_40px_80px_-40px_rgba(0,0,0,0.7)]`}>
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-lime/10 blur-[80px]"
-              />
-              <GhostNumber n="03" />
-              <CardHeader n="03" Icon={Code2} />
-              <CardBody
-                title="Software"
-                desc="Sistemas personalizados para automatizar e transformar processos."
-              />
-            </article>
-          </Reveal>
-
-          <Reveal delay={0.25} className="h-full">
-            <article className={`${base} min-h-[320px] border border-ink/[0.06] bg-bone hover:border-ink/10 hover:bg-paper hover:shadow-2xl hover:shadow-ink/10`}>
-              <GhostNumber n="04" />
-              <CardHeader n="04" Icon={Compass} />
-              <CardBody
-                title="Consultoria"
-                desc="Estratégia e tecnologia para transformar ideias em produtos digitais."
-              />
-            </article>
-          </Reveal>
+        <div className="mx-auto mt-16 grid max-w-5xl gap-6 sm:grid-cols-2 md:mt-20 lg:gap-8">
+          {SERVICES.map((service, i) => (
+            <Reveal key={service.n} delay={(i % 2) * 0.1} className="h-full">
+              <article
+                className={`group relative flex h-full flex-col overflow-hidden rounded-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 ${service.accent}`}
+              >
+                <CardMedia img={service.img} alt={service.alt} />
+                <CardBody
+                  n={service.n}
+                  Icon={service.Icon}
+                  title={service.title}
+                  desc={service.desc}
+                />
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

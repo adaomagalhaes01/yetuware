@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import aboutImg from "../assets/about.jpg";
-import { Chip, Reveal, WordReveal } from "./shared";
+import { Chip, Img, Reveal, WordReveal, useMobile } from "./shared";
 
 const CAPS = [
   "Software personalizado",
@@ -13,12 +13,13 @@ const CAPS = [
 export default function About() {
   const ref = useRef(null);
   const reduced = useReducedMotion();
+  const mobile = useMobile();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const yImg = useTransform(scrollYProgress, [0, 1], [reduced ? 0 : 60, reduced ? 0 : -60]);
-  const rotateImg = useTransform(scrollYProgress, [0, 1], [reduced ? 0 : -1.5, reduced ? 0 : 1.5]);
+  const yImg = useTransform(scrollYProgress, [0, 1], [mobile || reduced ? 0 : 60, mobile || reduced ? 0 : -60]);
+  const rotateImg = useTransform(scrollYProgress, [0, 1], [mobile || reduced ? 0 : -1.5, mobile || reduced ? 0 : 1.5]);
 
   return (
     <section
@@ -76,12 +77,12 @@ export default function About() {
               style={{ y: yImg, rotate: rotateImg }}
               className="relative overflow-hidden rounded-xl border border-white/10"
             >
-              <img
+              <Img
                 src={aboutImg}
                 alt="Fotografia de ambiente de trabalho tecnológico da Yetuware"
-                className="aspect-[4/5] w-full object-cover object-center"
-                loading="lazy"
-                decoding="async"
+                className="aspect-[4/5] w-full"
+                imgClassName="h-full w-full object-cover object-center"
+                skeletonClassName="bg-white/10"
               />
               <div
                 aria-hidden="true"
